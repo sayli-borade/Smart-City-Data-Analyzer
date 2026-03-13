@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>AI Smart City Dashboard</title>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+:root{
+--bg:#0f172a;
+--card:#1e293b;
+--text:#ffffff;
+--accent:#6366f1;
+}
+
+.light{
+--bg:#f1f5f9;
+--card:#ffffff;
+--text:#111827;
+--accent:#4f46e5;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Segoe UI;
+}
+
+body{
+background:var(--bg);
+color:var(--text);
+transition:0.4s;
+}
+
+/* HEADER */
+
+.header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 30px;
+background:var(--card);
+}
+
+.themeBtn{
+background:var(--accent);
+border:none;
+padding:8px 14px;
+border-radius:8px;
+color:white;
+cursor:pointer;
+}
+
+select{
+padding:6px;
+border-radius:6px;
+}
+
+/* CARDS */
+
+.cards{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
+gap:20px;
+padding:30px;
+}
+
+.card{
+background:var(--card);
+padding:25px;
+border-radius:12px;
+box-shadow:0 6px 15px rgba(0,0,0,0.3);
+border-left:5px solid var(--accent);
+}
+
+.card h3{
+opacity:0.7;
+}
+
+.card h1{
+font-size:32px;
+margin-top:10px;
+}
+
+/* CHARTS */
+
+.charts{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(350px,1fr));
+gap:20px;
+padding:20px 30px;
+}
+
+.chartbox{
+background:var(--card);
+padding:20px;
+border-radius:12px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="header">
+
+<h2>City Analytics</h2>
+
+<div>
+
+<select id="citySelect">
+<option>Nagpur</option>
+<option>Pune</option>
+<option>Thane</option>
+<option>Nashik</option>
+<option>Solapur</option>
+<option>Amravati</option>
+<option>Nanded</option>
+<option>Kolhapur</option>
+<option>Chandrapur</option>
+<option>Ratnagiri</option>
+<option>Satara</option>
+</select>
+
+<button class="themeBtn" onclick="toggleTheme()">Theme</button>
+
+<span id="clock"></span>
+
+</div>
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+<h3>Traffic</h3>
+<h1 id="trafficValue">0</h1>
+</div>
+
+<div class="card">
+<h3>Air Quality</h3>
+<h1 id="aqiValue">0</h1>
+</div>
+
+<div class="card">
+<h3>Energy</h3>
+<h1 id="energyValue">0</h1>
+</div>
+
+<div class="card">
+<h3>Temperature</h3>
+<h1 id="tempValue">0</h1>
+</div>
+
+</div>
+
+
+<div class="charts">
+
+<div class="chartbox">
+<canvas id="trafficChart"></canvas>
+</div>
+
+<div class="chartbox">
+<canvas id="airChart"></canvas>
+</div>
+
+<div class="chartbox">
+<canvas id="energyChart"></canvas>
+</div>
+
+</div>
+
+
+
+<script>
+
+/* THEME SWITCH */
+
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+
+
+/* CLOCK */
+
+setInterval(()=>{
+document.getElementById("clock").innerText =
+new Date().toLocaleTimeString();
+},1000);
+
+
+/* CITY DATA */
+
+const cityData = {
+
+Nagpur:{traffic:500,aqi:120,energy:80,temp:32},
+Pune:{traffic:650,aqi:110,energy:90,temp:30},
+Thane:{traffic:600,aqi:130,energy:85,temp:31},
+Nashik:{traffic:450,aqi:100,energy:70,temp:29},
+Solapur:{traffic:400,aqi:115,energy:65,temp:33},
+Amravati:{traffic:350,aqi:105,energy:60,temp:32},
+Nanded:{traffic:300,aqi:98,energy:55,temp:34},
+Kolhapur:{traffic:420,aqi:102,energy:68,temp:30},
+Chandrapur:{traffic:380,aqi:140,energy:62,temp:35},
+Ratnagiri:{traffic:260,aqi:80,energy:50,temp:28},
+Satara:{traffic:320,aqi:90,energy:58,temp:29}
+
+};
+
+
+/* GET SELECTED CITY DATA */
+
+function getCityData(){
+let city = document.getElementById("citySelect").value;
+return cityData[city];
+}
+
+
+/* CREATE CHARTS */
+
+let trafficChart = new Chart(
+document.getElementById("trafficChart"),
+{
+type:'bar',
+data:{
+labels:[],
+datasets:[{
+label:"Traffic Density",
+data:[],
+backgroundColor:"#6366f1"
+}]
+}
+});
+
+let airChart = new Chart(
+document.getElementById("airChart"),
+{
+type:'line',
+data:{
+labels:[],
+datasets:[{
+label:"Air Quality Index",
+data:[],
+borderColor:"#22c55e",
+backgroundColor:"rgba(34,197,94,0.2)",
+fill:true
+}]
+}
+});
+
+let energyChart = new Chart(
+document.getElementById("energyChart"),
+{
+type:'doughnut',
+data:{
+labels:["Residential","Commercial","Transport"],
+datasets:[{
+data:[40,35,25],
+backgroundColor:["#6366f1","#22c55e","#f59e0b"]
+}]
+}
+});
+
+
+/* UPDATE DATA */
+
+function updateData(){
+
+let data = getCityData();
+
+/* simulate real-time variation */
+
+let traffic = data.traffic + Math.floor(Math.random()*80 - 40);
+let aqi = data.aqi + Math.floor(Math.random()*30 - 15);
+let energy = data.energy + Math.floor(Math.random()*20 - 10);
+let temp = data.temp + Math.floor(Math.random()*4 - 2);
+
+
+/* update cards */
+
+document.getElementById("trafficValue").innerText = traffic;
+document.getElementById("aqiValue").innerText = aqi;
+document.getElementById("energyValue").innerText = energy;
+document.getElementById("tempValue").innerText = temp + "°C";
+
+
+let time = new Date().toLocaleTimeString();
+
+/* update charts */
+
+trafficChart.data.labels.push(time);
+trafficChart.data.datasets[0].data.push(traffic);
+
+airChart.data.labels.push(time);
+airChart.data.datasets[0].data.push(aqi);
+
+/* keep last 10 points */
+
+if(trafficChart.data.labels.length > 10){
+
+trafficChart.data.labels.shift();
+trafficChart.data.datasets[0].data.shift();
+
+airChart.data.labels.shift();
+airChart.data.datasets[0].data.shift();
+
+}
+
+trafficChart.update();
+airChart.update();
+
+}
+
+
+/* EVENT */
+
+document.getElementById("citySelect")
+.addEventListener("change",updateData);
+
+
+/* START SYSTEM */
+
+updateData();
+
+setInterval(updateData,2000);
+
+</script>
+
+</body>
+</html>
