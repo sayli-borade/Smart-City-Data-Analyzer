@@ -93,7 +93,7 @@ You can also run it using a development server such as **Live Server in VS Code*
 project-folder
 │
 ├── index.html
-├── images
+├── image
 │   └── dashboard.png
 ├── Smart_City_Dashboard_Presentation.pdf
 └── README.md
