@@ -2,9 +2,9 @@
 
 ## Overview
 
-The **AI Smart City Dashboard** is a web-based data visualization system that displays key urban analytics such as traffic density, air quality index (AQI), energy usage, and temperature for multiple cities.
+The **AI Smart City Dashboard** is a web-based data visualization platform designed to display key urban analytics such as **traffic density, air quality index (AQI), energy consumption, and temperature** for multiple cities.
 
-The dashboard updates data dynamically and presents it through interactive charts and metric cards. It provides a simple interface for monitoring city conditions and observing trends in real time.
+The dashboard presents data through **interactive charts, metric cards, and a responsive layout**, allowing users to monitor city conditions and observe trends dynamically.
 
 ---
 
@@ -12,7 +12,16 @@ The dashboard updates data dynamically and presents it through interactive chart
 
 ![Dashboard Screenshot](images/dashboard.png)
 
-*(Replace this image with your actual dashboard screenshot.)*
+*(Replace with your actual dashboard screenshot)*
+
+---
+
+## Project Presentation
+
+A detailed explanation of the project, including problem statement, system design, and future scope, is available in the presentation.
+
+📊 **Project PPT:**
+`Smart_City_Dashboard_Presentation.pptx`
 
 ---
 
@@ -38,14 +47,14 @@ The dashboard updates data dynamically and presents it through interactive chart
 
 ## Dashboard Metrics
 
-The system currently tracks four main parameters:
+The dashboard currently tracks four main parameters:
 
 * **Traffic Density**
 * **Air Quality Index (AQI)**
 * **Energy Consumption**
 * **Temperature**
 
-These values update automatically every few seconds and are visualized using charts.
+These values update automatically and are visualized using interactive charts.
 
 ---
 
@@ -54,17 +63,17 @@ These values update automatically every few seconds and are visualized using cha
 ### Traffic Density Chart
 
 * Bar chart
-* Shows traffic activity over time
+* Displays traffic activity trends
 
 ### Air Quality Chart
 
 * Line chart
-* Displays AQI changes
+* Shows AQI changes over time
 
 ### Energy Usage Chart
 
 * Doughnut chart
-* Shows distribution between residential, commercial, and transport sectors
+* Represents energy consumption distribution across sectors
 
 ---
 
@@ -72,11 +81,9 @@ These values update automatically every few seconds and are visualized using cha
 
 1. Download or clone the repository.
 2. Open the project folder.
-3. Run the `index.html` file in a web browser.
+3. Run the `index.html` file in any web browser.
 
-Or use a local development server such as:
-
-* Live Server in VS Code
+You can also run it using a development server such as **Live Server in VS Code**.
 
 ---
 
@@ -88,6 +95,7 @@ project-folder
 ├── index.html
 ├── images
 │   └── dashboard.png
+├── Smart_City_Dashboard_Presentation.pdf
 └── README.md
 ```
 
@@ -95,16 +103,16 @@ project-folder
 
 ## Future Improvements
 
-Possible improvements to the system include:
+Possible enhancements for the system include:
 
-* Integration with real city data APIs
+* Integration with real-time city data APIs
 * AI-based prediction for traffic and pollution
 * Map visualization of city analytics
-* Data storage and history tracking
-* Alerts for high pollution or heavy traffic
+* Data storage and historical analytics
+* Alerts for high pollution or heavy traffic levels
 
 ---
 
 ## Author
 
-Developed as part of a Smart City Analytics project.
+Developed as part of a **Smart City Analytics Project**.
